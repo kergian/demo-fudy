@@ -1,0 +1,24 @@
+{
+  "name": "fudy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "app": "concurrently -k -n 'database,client,server' -c '#7f00ff,#ff0000,#ff8c00' 'npm run database' 'npm run client' 'npm run server'",
+    "database": "docker compose -f server/docker-compose.yml up",
+    "client": "wait-on tcp:5500 && npm --prefix client run dev",
+    "server": "wait-on tcp:5432 && npm --prefix server run start:dev",
+    "bootstrap": "npm i && npm --prefix client i && npm --prefix server i",
+    "update:root": "npx npm-check-updates --format group -i",
+    "update:client": "npx npm-check-updates --cwd client --format group -i",
+    "update:server": "npx npm-check-updates --cwd server --format group -i"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "npm-check-updates": "^16.14.14",
+    "wait-on": "^7.2.0"
+  }
+}
