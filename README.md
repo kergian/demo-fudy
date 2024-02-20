@@ -1,4 +1,4 @@
-# Fudy evil twin
+# Fudy
 
 ### Test assignment for the role of Full Stack developer in Fudy company
 
